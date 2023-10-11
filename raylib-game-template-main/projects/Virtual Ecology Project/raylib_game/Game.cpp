@@ -1,10 +1,14 @@
 #include "Header.h"
 
+using namespace std;
+
 int main(void)
 {
-    const int xDim = 1920, yDim = 1080;
-    InitWindow(xDim, yDim, "raylib [core] example - basic window");
+    const int xDim = 1600, yDim = 900;
+    const float dotRadius = 5.0f;
+    InitWindow(xDim, yDim, "Virtual Ecology");
     SetTargetFPS(60);
+
 
     while (!WindowShouldClose())
     {
