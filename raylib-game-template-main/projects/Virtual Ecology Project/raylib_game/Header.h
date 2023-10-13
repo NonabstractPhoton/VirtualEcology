@@ -3,4 +3,3 @@
 #include "raymath.h"
 #include <iostream>
 
-class Agent {};
