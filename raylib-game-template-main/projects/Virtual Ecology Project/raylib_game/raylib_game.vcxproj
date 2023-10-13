@@ -355,6 +355,7 @@
     <ClCompile Include="ChaserAgent.cpp" />
     <ClCompile Include="Food.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="WanderingAgent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h" />
