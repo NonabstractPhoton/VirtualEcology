@@ -5,7 +5,7 @@
 class ChaserAgent : public Agent {
 public:
     //it seeks
-    void updatePlayerNums() {
+    void update() {
         lookForFood();
         if (&targetPos == NULL)
             velocity = Vector2Add(velocity, acceleration);
