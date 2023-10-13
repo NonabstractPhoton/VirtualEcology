@@ -13,15 +13,15 @@ public:
         lookForFood();
         if (&targetPos == NULL)
             velocity = Vector2Add(velocity, acceleration);
-        velocity = Vector2ClampValue(velocity, -maxspeed, maxspeed);
+        velocity = Vector2ClampValue(velocity, -maxSpeed, maxSpeed);
         location = Vector2Add(location, velocity);
 
         Vector2 desiredVelocity = Vector2Normalize(Vector2Subtract(targetPos, location));
         addForce(Vector2ClampValue(
             Vector2Subtract(
-                { desiredVelocity.x * maxspeed, desiredVelocity.y * maxspeed }
+                { desiredVelocity.x * maxSpeed, desiredVelocity.y * maxSpeed }
                 , velocity)
-            , -maxforce, maxforce));
+            , -maxForce, maxForce));
     }
 
     void lookForFood() {

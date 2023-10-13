@@ -8,7 +8,7 @@ class Agent {
         Vector2 velocity;
         Vector2 acceleration;
         Vector2 targetPos;
-        float size, maxspeed, maxforce, foodRange, detectRange, rechargeTime;
+        float size, maxSpeed, maxForce, foodRange, detectRange, rechargeTime;
 
 		Agent(Vector2 location, float size, float maxSpeed, float maxForce, float foodRange, float detectRange, float rechargeTime) {
 			this->location = location;

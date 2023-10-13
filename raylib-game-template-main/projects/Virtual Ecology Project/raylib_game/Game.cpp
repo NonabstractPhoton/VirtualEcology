@@ -22,7 +22,7 @@ int main(void)
 
     vector<Agent> agents;
     for (int i = 0; i < CHASER_STARTING_POP; i++) {
-        agents.push_back(ChaserAgent{ {0, 0}, {0, 0}, {0, 0}, {0, 0}, 0, 0, 0, 0, 0, 0 });
+        //agents.push_back(ChaserAgent{ {0, 0}, {0, 0}, {0, 0}, {0, 0}, 0, 0, 0, 0, 0, 0 });
     }
     
 
