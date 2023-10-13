@@ -7,6 +7,8 @@
 
 class ChaserAgent : public Agent {
 public:
+
+
     //it seeks
     void updatePlayerNums() {
         lookForFood();
