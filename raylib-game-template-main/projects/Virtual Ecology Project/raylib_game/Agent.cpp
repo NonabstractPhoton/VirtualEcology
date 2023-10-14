@@ -25,7 +25,7 @@ class Agent {
 		void seekTarget() { seek(); }
 
 	private:
-		const float maxComponentSpeed = 1.8f, maxForce = 1, mass = 50,
+		const float mass = 50,
 			rotationFrames = 90, slowdownDistance = 75, maxSpeedForStationaryTurns = .025f;
 		int progress = 0;
 		float angle = 360;
@@ -39,12 +39,12 @@ class Agent {
 
 			if (distance <= slowdownDistance)
 			{
-				float newSpeed = (.66f + (distance / (3 * slowdownDistance))) * maxComponentSpeed;
+				float newSpeed = (.66f + (distance / (3 * slowdownDistance))) * maxSpeed;
 				desired = Vector2Multiply(desired, { newSpeed, newSpeed });
 			}
 			else
 			{
-				desired = Vector2Multiply(desired, { maxComponentSpeed, maxComponentSpeed });
+				desired = Vector2Multiply(desired, { maxSpeed, maxSpeed });
 			}
 
 			Vector2 steer = Vector2Subtract(desired, velocity);

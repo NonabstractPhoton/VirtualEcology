@@ -3,12 +3,16 @@
 #include "Agent.cpp"
 #include "Food.cpp"
 #include "ChaserAgent.cpp"
+#include "WanderingAgent.cpp"
+
 
 
 using namespace std;
 
 #define CHASER_STARTING_POP 5
-#define WANDERER_STARTING_POP 5
+#define WANDERING_STARTING_POP 5
+#define FOOD_PER_ROUND 50
+
 
 
 
@@ -21,20 +25,27 @@ int main(void)
     SetTargetFPS(60);
 
     vector<Agent> agents;
-    for (int i = 0; i < CHASER_STARTING_POP; i++) {
-        //agents.push_back(ChaserAgent{ {0, 0}, {0, 0}, {0, 0}, {0, 0}, 0, 0, 0, 0, 0, 0 });
-    }
+    vector<Food> food;
+
     
+    for (int i = 0; i < CHASER_STARTING_POP; i++)
+        agents.push_back(ChaserAgent{ Vector2{(float)GetRandomValue(0, xDim), (float)GetRandomValue(0, yDim)} });
+    for (int i = 0; i < WANDERING_STARTING_POP; i++)
+        agents.push_back(WanderingAgent{ Vector2{(float)GetRandomValue(0, xDim), (float)GetRandomValue(0, yDim)} });
 
-
-
-
+    for (int i = 0; i < FOOD_PER_ROUND; i++) 
+        food.push_back(Food{ Vector2{(float)GetRandomValue(0, xDim), (float)GetRandomValue(0, yDim)} });
+    
 
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(WHITE);
 
+        for (Agent agent : agents)
+            agent.draw();
+        for (Food f : food)
+            DrawCircle(f.location.x, f.location.y, f.radius, RED);
         
 
 
