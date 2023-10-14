@@ -9,13 +9,17 @@
 
 
 using namespace std;
+using namespace chrono;
 
 #define CHASER_STARTING_POP 5
 #define WANDERING_STARTING_POP 5
 #define FOOD_PER_ROUND 50
 
 
-const int xDim = 1600, yDim = 900;
+const int xDim = 1600, yDim = 900, evolutionScreenTime = 5, simRunTime = 20;
+auto simStartTime = high_resolution_clock::now();
+bool simulating;
+
 vector<Agent> agents;
 vector<Food> food;
 
@@ -29,9 +33,9 @@ int main(void)
     generateFood();
 
 
-    for (int i = 0; i < CHASER_STARTING_POP; i++)
+    for (int i = 0; i <= CHASER_STARTING_POP; i++)
         agents.push_back(ChaserAgent{ Vector2{(float)GetRandomValue(0, xDim), (float)GetRandomValue(0, yDim)} });
-    for (int i = 0; i < WANDERING_STARTING_POP; i++)
+    for (int i = 0; i <= WANDERING_STARTING_POP; i++)
         agents.push_back(WanderingAgent{ Vector2{(float)GetRandomValue(0, xDim), (float)GetRandomValue(0, yDim)} });
 
 
@@ -40,6 +44,27 @@ int main(void)
     {
         BeginDrawing();
         ClearBackground(WHITE);
+
+        int currentRunTime = duration_cast<seconds>(high_resolution_clock::now() - simStartTime).count();
+
+        if (currentRunTime > simRunTime + evolutionScreenTime) {     //start new sim
+            simStartTime = high_resolution_clock::now();
+            generateFood();
+            simulating = true;
+        }
+        else if (currentRunTime > simRunTime) {    //draw spash screen showing the stat changes/killing/mutations
+            if (simulating) {
+                simulating = false;
+                evolve();
+            }
+            drawSplash();
+        }
+        else {      //simulating
+            drawFood();
+            drawAgents();
+        }
+
+
 
         /*
             generate food
@@ -79,11 +104,15 @@ void drawFood() {
 }
 
 void evolve() {
-
+    int f;
 }
 
 void drawAgents() {
-    for (Agent agent : agents)
+    for (Agent agent : agents)  
         agent.draw();
+}
+
+void drawSplash() {
+    //draw ranking, who died, who mutated etc.
 }
 
