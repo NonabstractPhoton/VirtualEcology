@@ -16,7 +16,7 @@ using namespace chrono;
 #define FOOD_PER_ROUND 50
 
 
-const int xDim = 1600, yDim = 900, evolutionScreenTime = 5, simRunTime = 20;
+const int evolutionScreenTime = 5, simRunTime = 20;
 auto simStartTime = high_resolution_clock::now();
 bool simulating;
 
@@ -27,16 +27,16 @@ vector<Food> food;
 int main(void)
 {
 
-    InitWindow(xDim, yDim, "Virtual Ecology");
+    InitWindow(XDIM, YDIM, "Virtual Ecology");
     SetTargetFPS(60);
 
     generateFood();
 
 
     for (int i = 0; i <= CHASER_STARTING_POP; i++)
-        agents.push_back(ChaserAgent{ Vector2{(float)GetRandomValue(0, xDim), (float)GetRandomValue(0, yDim)} });
+        agents.push_back(ChaserAgent{ Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)} });
     for (int i = 0; i <= WANDERING_STARTING_POP; i++)
-        agents.push_back(WanderingAgent{ Vector2{(float)GetRandomValue(0, xDim), (float)GetRandomValue(0, yDim)} });
+        agents.push_back(WanderingAgent{ Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)} });
 
 
 

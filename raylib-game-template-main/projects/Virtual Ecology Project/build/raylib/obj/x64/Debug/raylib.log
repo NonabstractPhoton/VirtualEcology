@@ -1,10 +1,1 @@
-﻿  raudio.c
-  rcore.c
-  rmodels.c
-  rglfw.c
-  rshapes.c
-  rtext.c
-  rtextures.c
-  utils.c
-  Generating Code...
-  raylib.vcxproj -> C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\build\raylib\bin\x64\Debug\raylib.lib
+﻿  raylib.vcxproj -> C:\Users\10017064\Downloads\VirtualEcologyProject\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\build\raylib\bin\x64\Debug\raylib.lib

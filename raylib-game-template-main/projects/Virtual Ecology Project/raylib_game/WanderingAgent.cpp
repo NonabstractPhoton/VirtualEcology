@@ -1,6 +1,4 @@
-#include "Header.h"
 #include "Agent.cpp"
-#include "Food.cpp"
 
 
 
@@ -8,10 +6,9 @@
 class WanderingAgent : public Agent {
 
 private:
-	const int distanceTolerance = 5;
 	int rechargeTimer = 0;
 
-	const float SIZE = 1, MAX_SPEED = 1, MAX_FORCE = .1, FOOD_RANGE = 0, DETECT_RANGE = 0, RECHARGE_TIME = 5;
+	const float SIZE = 1, MAX_SPEED = 1, MAX_FORCE = .1, FOOD_RANGE = 5, DETECT_RANGE = 0, RECHARGE_TIME = 5;
 
 
 public:
@@ -19,20 +16,32 @@ public:
 
 	WanderingAgent(Vector2 location) : Agent(location, SIZE, MAX_SPEED, MAX_FORCE, FOOD_RANGE, DETECT_RANGE, RECHARGE_TIME) {}
 
-	void update(std::vector<Food>* food)
+	void update(std::vector<Food>* foods)
 	{
-		if (Vector2Length(velocity) < .01 || Vector2Length(Vector2Subtract(location, targetPos)) < distanceTolerance)
+		if (Vector2Distance(location, targetPos) < FOOD_RANGE || Vector2Length(velocity) < .01) // if slow or close to target
 		{
-			/*
-				targetPos = {rand() % xdim, rand() % ydim};
-			*/
+			targetPos = {(float)(rand() % XDIM), (float)(rand() % YDIM)};
 		}
 
 		seekTarget();
 
 		if (rechargeTimer < .1)
 		{
-			// consumeFoodinRadius()
+			rechargeTimer = RECHARGE_TIME;
+			consumeFoodInRange(foods);
+		}
+	}
+
+	void consumeFoodInRange(std::vector<Food>* foods)
+	{
+		for (int i = 0; i < (*foods).size(); i++)
+		{
+			if (Vector2Distance(location, (*foods)[i].location) < FOOD_RANGE)
+			{
+				foods->erase((*foods).begin() + i);
+				foodEaten++;
+				break;
+			}
 		}
 	}
 };
