@@ -15,7 +15,7 @@ public:
 
 	WanderingAgent(Vector2 location) : Agent(location, SIZE, MAX_SPEED, MAX_FORCE, FOOD_RANGE, DETECT_RANGE, RECHARGE_TIME) {}
 
-	/*void update(std::vector<Food>* foods)
+	void update(std::vector<Food>* foods) override
 	{
 		if (Vector2Distance(location, targetPos) < FOOD_RANGE || Vector2Length(velocity) < .01) // if slow or close to target
 		{
@@ -23,6 +23,7 @@ public:
 		}
 
 		seekTarget();
+		rechargeTimer -= GetFrameTime();
 
 		if (rechargeTimer < .1)
 		{
@@ -42,5 +43,5 @@ public:
 				break;
 			}
 		}
-	}*/
+	}
 };

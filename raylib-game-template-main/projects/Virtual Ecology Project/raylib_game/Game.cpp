@@ -120,8 +120,12 @@ void drawSplash() {
 }
 
 void updateAllAgents() {
-    for (Agent agent : agents) {
-        agent.update(&food);
+    for (Agent agent : agents) { // TODO DYNAMIC CAST
+        if (typeid(agent) == typeid(ChaserAgent))
+        {
+            ChaserAgent* ptr = static_cast<ChaserAgent*>(&agent);
+            ptr->update(&food);
+        }
     }
 }
 

@@ -31,7 +31,7 @@ public:
 		DrawCircleGradient(location.x, location.y, foodRange, Color{255, 255, 255, 0 }, EAT_COLOR);
 	}
 
-	void update(std::vector<Food>* foods) {}
+	virtual void update(std::vector<Food>* foods) { DrawCircle(XDIM / 2, YDIM / 2, 100, DARKBROWN); }
 
 
 	void seekTarget() { seek(); }
@@ -47,6 +47,7 @@ private:
 
 
 	void seek() {
+		DrawCircle(0, 0, 5, BLUE);
 		Vector2 desired = Vector2Subtract(targetPos, location);
 		float distance = Vector2Length(desired);
 		desired = Vector2Normalize(desired);
