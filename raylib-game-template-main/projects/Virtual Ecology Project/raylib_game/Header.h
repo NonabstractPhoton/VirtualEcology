@@ -18,3 +18,4 @@ void generateFood();
 void evolve();
 void drawAgents();
 void drawSplash();
+void updateAllAgents();

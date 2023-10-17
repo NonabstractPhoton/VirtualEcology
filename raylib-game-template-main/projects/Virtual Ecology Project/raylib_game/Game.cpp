@@ -63,6 +63,7 @@ int main(void)
         else {      //simulating
             drawFood();
             drawAgents();
+            updateAllAgents();
         }
 
 
@@ -96,7 +97,7 @@ int main(void)
 
 void generateFood() {
     for (int i = 0; i < FOOD_PER_ROUND; i++)
-        food.push_back(Food{ Vector2{(float)GetRandomValue(0, xDim), (float)GetRandomValue(0, yDim)} });
+        food.push_back(Food{ Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)} });
 }
 
 void drawFood() {
@@ -115,5 +116,11 @@ void drawAgents() {
 
 void drawSplash() {
     //draw ranking, who died, who mutated etc.
+}
+
+void updateAllAgents() {
+    for (Agent agent : agents) {
+        agent.update(&food);
+    }
 }
 

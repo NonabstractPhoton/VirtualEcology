@@ -31,6 +31,9 @@ public:
 		DrawCircleGradient(location.x, location.y, foodRange, Color{255, 255, 255, 0 }, EAT_COLOR);
 	}
 
+	void update(std::vector<Food>* foods) {}
+
+
 	void seekTarget() { seek(); }
 
 private:
@@ -62,6 +65,7 @@ private:
 		steer = Vector2ClampValue(steer, 0, maxForce);
 		applyForce(steer);
 	}
+
 
 	void calculateAngle()
 	{
