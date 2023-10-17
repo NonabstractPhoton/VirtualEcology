@@ -20,6 +20,12 @@ public:
                 (*foods).erase((*foods).begin() + i);
             }
         }
+
+        if(Vector2Distance(targetPos, {0, 0})<.01)
+            targetPos = {(float)(rand() % XDIM), (float)(rand() % YDIM)};
+
+        seekTarget();
+
     }
 
 

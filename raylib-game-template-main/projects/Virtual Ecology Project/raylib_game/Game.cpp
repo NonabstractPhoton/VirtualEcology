@@ -61,6 +61,7 @@ int main(void)
             drawSplash();
         }
         else {      //simulating
+            //cout << &food;
             drawFood();
             drawAgents();
             updateAllAgents();
@@ -102,7 +103,7 @@ void generateFood() {
 
 void drawFood() {
     for (Food f : food)
-        DrawCircle(f.location.x, f.location.y, f.radius, BLACK);
+        DrawCircle(f.location.x, f.location.y, 5, BLACK);
 }
 
 void evolve() {
