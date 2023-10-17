@@ -5,6 +5,14 @@ C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-mai
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(27,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(28,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(28,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  ChaserAgent.cpp
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(26,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(26,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(27,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(27,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(28,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(28,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\ChaserAgent.cpp(19,53): warning C4305: 'initializing': truncation from 'double' to 'const float'
   game.cpp
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(26,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(26,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
@@ -14,13 +22,14 @@ C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-mai
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\Agent.cpp(28,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\ChaserAgent.cpp(19,53): warning C4305: 'initializing': truncation from 'double' to 'const float'
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\WanderingAgent.cpp(14,49): warning C4305: 'initializing': truncation from 'double' to 'const float'
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(48,28): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(50,28): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(103,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(103,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(107,9): warning C4101: 'f': unreferenced local variable
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(105,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(105,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(109,9): warning C4101: 'f': unreferenced local variable
   Generating Code...
-  raylib_game.vcxproj -> C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\build\raylib_game\bin\x64\Debug\raylib_game.exe
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1094,5): error MSB6006: "link.exe" exited with code 1168.
+LINK : fatal error LNK1168: cannot open C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\\build\raylib_game\bin\x64\Debug\raylib_game.exe for writing

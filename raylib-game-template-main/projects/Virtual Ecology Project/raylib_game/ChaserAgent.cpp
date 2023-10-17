@@ -1,5 +1,8 @@
 #include "Header.h"
 #include "Agent.cpp"
+#include "Food.cpp"
+
+
 
 
 
@@ -8,8 +11,16 @@ public:
 
     ChaserAgent(Vector2 location) : Agent(location, SIZE, MAX_SPEED, MAX_FORCE, FOOD_RANGE, DETECT_RANGE, RECHARGE_TIME) {}
 
-    void lookForFood() {
 
+    void update(std::vector<Food>* foods) {
+        for (int i = 0; i < (*foods).size(); i++) {
+            if (Vector2Distance((*foods)[i].location, location) < detectRange) {
+                targetPos = (*foods)[i].location;
+            }
+            if (Vector2Distance((*foods)[i].location, location) < foodRange) {
+                (*foods).erase((*foods).begin() + i);
+            }
+        }
     }
 
 
