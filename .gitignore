@@ -33,4 +33,5 @@
 
 # Logs
 *.log
+*.tlog
 *.idb
