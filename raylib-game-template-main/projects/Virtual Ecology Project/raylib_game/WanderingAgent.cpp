@@ -11,7 +11,7 @@ private:
 	const int distanceTolerance = 5;
 	int rechargeTimer = 0;
 
-	const float SIZE = 1, MAX_SPEED = 1, MAX_FORCE = .1, FOOD_RANGE = 0, DETECT_RANGE = 0, RECHARGE_TIME = 5;
+	const float SIZE = 1, MAX_SPEED = 1, MAX_FORCE = .1, FOOD_RANGE = 10, DETECT_RANGE = 0, RECHARGE_TIME = 5;
 
 
 public:

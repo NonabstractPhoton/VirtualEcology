@@ -33,9 +33,9 @@ int main(void)
     generateFood();
 
 
-    for (int i = 0; i <= CHASER_STARTING_POP; i++)
+    for (int i = 1; i <= CHASER_STARTING_POP; i++)
         agents.push_back(ChaserAgent{ Vector2{(float)GetRandomValue(0, xDim), (float)GetRandomValue(0, yDim)} });
-    for (int i = 0; i <= WANDERING_STARTING_POP; i++)
+    for (int i = 1; i <= WANDERING_STARTING_POP; i++)
         agents.push_back(WanderingAgent{ Vector2{(float)GetRandomValue(0, xDim), (float)GetRandomValue(0, yDim)} });
 
 
@@ -100,7 +100,7 @@ void generateFood() {
 
 void drawFood() {
     for (Food f : food)
-        DrawCircle(f.location.x, f.location.y, f.radius, RED);
+        DrawCircle(f.location.x, f.location.y, f.radius, BLACK);
 }
 
 void evolve() {

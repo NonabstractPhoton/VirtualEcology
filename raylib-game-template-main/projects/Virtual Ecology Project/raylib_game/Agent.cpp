@@ -23,7 +23,7 @@ public:
 	}
 
 	void draw() {
-		DrawCircle(location.x, location.y, 5, detectRange>0?DARKBLUE:DARKGREEN);
+		DrawCircle(location.x, location.y, 5, detectRange>0?BLUE:GREEN);
 		DrawCircleGradient(location.x, location.y, detectRange, Color{255, 255, 255, 0}, DETECT_COLOR);
 		DrawCircleGradient(location.x, location.y, foodRange, Color{255, 255, 255, 0 }, EAT_COLOR);
 	}
