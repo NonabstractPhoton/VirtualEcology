@@ -1,5 +1,7 @@
-#include "Header.h"
 #pragma once
+#include "Header.h"
+#include "Food.cpp"
+
 
 class Agent {
 
@@ -9,7 +11,7 @@ public:
 	Vector2 velocity = { 0, 0 };
 	Vector2 acceleration = { 0, 0 };
 	Vector2 targetPos = { 0, 0 };
-	float size, maxSpeed, maxForce, foodRange, detectRange, rechargeTime;
+	float size, maxSpeed, maxForce, foodRange, detectRange, rechargeTime, foodEaten;
 
 
 	Agent(Vector2 location, float size, float maxSpeed, float maxForce, float foodRange, float detectRange, float rechargeTime) {
@@ -20,6 +22,7 @@ public:
 		this->foodRange = foodRange;
 		this->detectRange = detectRange;
 		this->rechargeTime = rechargeTime;
+		foodEaten = 0;
 	}
 
 	void draw() {
