@@ -11,16 +11,17 @@
 using namespace std;
 using namespace chrono;
 
-#define CHASER_STARTING_POP 5
-#define WANDERING_STARTING_POP 5
+#define CHASER_STARTING_POP 10
+#define WANDERING_STARTING_POP 10
 #define FOOD_PER_ROUND 50
 
 
-const int evolutionScreenTime = 5, simRunTime = 20;
+const int evolutionScreenTime = 5, simRunTime = 999999;
 auto simStartTime = high_resolution_clock::now();
 bool simulating;
 
-vector<Agent> agents;
+vector<Agent*> agents;
+
 vector<Food> food;
 
 
@@ -34,10 +35,14 @@ int main(void)
 
 
 
-    for (int i = 0; i <= CHASER_STARTING_POP; i++)
-        agents.push_back(ChaserAgent{ Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)} });
-    for (int i = 0; i <= WANDERING_STARTING_POP; i++)
-        agents.push_back(WanderingAgent{ Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)} });
+
+    agents.reserve(10);
+    for (int i = 0; i < CHASER_STARTING_POP; i++) {
+        agents.push_back(new chaseI);
+    }
+    for (int i = 0; i < WANDERING_STARTING_POP; i++) {
+        agents.push_back(new wanderI);
+    }
 
 
 
@@ -61,10 +66,10 @@ int main(void)
             drawSplash();
         }
         else {      //simulating
-            //cout << &food;
             drawFood();
-            drawAgents();
             updateAllAgents();
+            drawAgents();
+
         }
 
 
@@ -111,8 +116,14 @@ void evolve() {
 }
 
 void drawAgents() {
-    for (Agent agent : agents)  
-        agent.draw();
+    for (Agent* ptr : agents) {
+        if (ChaserAgent* j = dynamic_cast<ChaserAgent*>(ptr)) {
+            j->draw();
+        }
+        else if (WanderingAgent* k = dynamic_cast<WanderingAgent*>(ptr)) {
+            k->draw();
+        }
+    }
 }
 
 void drawSplash() {
@@ -120,12 +131,11 @@ void drawSplash() {
 }
 
 void updateAllAgents() {
-    for (Agent agent : agents) { // TODO DYNAMIC CAST
-        if (typeid(agent) == typeid(ChaserAgent))
-        {
-            ChaserAgent* ptr = static_cast<ChaserAgent*>(&agent);
-            ptr->update(&food);
-        }
+    for (Agent* ptr : agents) {
+        if (ChaserAgent* j = dynamic_cast<ChaserAgent*>(ptr))
+            j->update(&food);
+        else if (WanderingAgent* k = dynamic_cast<WanderingAgent*>(ptr))
+            k->update(&food);
     }
-}
 
+}

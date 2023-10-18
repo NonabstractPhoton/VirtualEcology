@@ -25,21 +25,40 @@ public:
 		foodEaten = 0;
 	}
 
-	void draw() {
-		DrawCircle(location.x, location.y, 5, detectRange>0?BLUE:GREEN);
-		DrawCircleGradient(location.x, location.y, detectRange, Color{255, 255, 255, 0}, DETECT_COLOR);
-		DrawCircleGradient(location.x, location.y, foodRange, Color{255, 255, 255, 0 }, EAT_COLOR);
+	virtual void draw() {
+
 	}
 
-	virtual void update(std::vector<Food>* foods) { DrawCircle(XDIM / 2, YDIM / 2, 100, DARKBROWN); }
+	virtual void update(std::vector<Food>* foods) {
+
+	}
 
 
 	void seekTarget() { seek(); }
 
+	void toString() {
+		std::cout << foodRange << "\t";
+		std::cout << detectRange << "\n";
+		
+	}
+
+	void consumeFoodInRange(std::vector<Food>* foods)
+	{
+		for (int i = 0; i < (*foods).size(); i++)
+		{
+			if (Vector2Distance(location, (*foods)[i].location) < foodRange)
+			{
+				foods->erase((*foods).begin() + i);
+				foodEaten++;
+				break;
+			}
+		}
+	}
+
 private:
 
 
-	const float mass = 50,
+	const float mass =  1,
 		rotationFrames = 90, slowdownDistance = 75, maxSpeedForStationaryTurns = .025f;
 	int progress = 0;
 	float angle = 360;
@@ -47,7 +66,8 @@ private:
 
 
 	void seek() {
-		DrawCircle(0, 0, 5, BLUE);
+
+
 		Vector2 desired = Vector2Subtract(targetPos, location);
 		float distance = Vector2Length(desired);
 		desired = Vector2Normalize(desired);
@@ -65,6 +85,9 @@ private:
 		Vector2 steer = Vector2Subtract(desired, velocity);
 		steer = Vector2ClampValue(steer, 0, maxForce);
 		applyForce(steer);
+
+
+		
 	}
 
 
@@ -90,6 +113,8 @@ private:
 			progress = 0;
 		}
 	}
+
+
 
 	void applyForce(Vector2 force)
 	{
