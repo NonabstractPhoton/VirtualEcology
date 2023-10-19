@@ -55,6 +55,10 @@ public:
 		}
 	}
 
+	bool operator< (const Agent& other) {
+		return foodEaten < other.foodEaten;
+	}
+
 private:
 
 

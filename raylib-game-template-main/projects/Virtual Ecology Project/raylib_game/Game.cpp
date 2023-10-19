@@ -13,16 +13,19 @@ using namespace chrono;
 
 #define CHASER_STARTING_POP 10
 #define WANDERING_STARTING_POP 10
-#define FOOD_PER_ROUND 50
+#define FOOD_PER_ROUND 500
 
 
-const int evolutionScreenTime = 5, simRunTime = 999999;
+const int evolutionScreenTime = 5, simRunTime = 5;
 auto simStartTime = high_resolution_clock::now();
-bool simulating;
+bool simulating = true;
 
 vector<Agent*> agents;
 
 vector<Food> food;
+
+bool comparePtrToNode(Agent* a, Agent* b);
+
 
 
 int main(void)
@@ -112,7 +115,10 @@ void drawFood() {
 }
 
 void evolve() {
-    int f;
+
+    sort(agents.begin(), agents.end(), comparePtrToNode);
+    
+    agents.erase(agents.begin());   //removes the guy who eaten the least
 }
 
 void drawAgents() {
@@ -139,3 +145,7 @@ void updateAllAgents() {
     }
 
 }
+
+bool comparePtrToNode(Agent* a, Agent* b) {
+    //cout << a->foodEaten << "\t" << b->foodEaten << "\n";
+    return (*a < *b); }

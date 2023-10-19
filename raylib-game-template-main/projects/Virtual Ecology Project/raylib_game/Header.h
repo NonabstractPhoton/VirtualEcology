@@ -6,6 +6,7 @@
 #include <stdlib.h>  
 #include <chrono>
 #include <ctime>  
+#include <algorithm>
 
 #define DETECT_COLOR Color{216, 162, 235, 255}
 #define EAT_COLOR Color{162, 235, 166, 255}
