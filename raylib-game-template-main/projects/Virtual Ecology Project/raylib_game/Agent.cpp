@@ -58,6 +58,15 @@ public:
 		return foodEaten < other.foodEaten;
 	}
 
+	Color gradientCalculator(Color s, Color f, float fraction) {
+		return Color{
+			static_cast<uint8_t>(s.r + (fraction * (f.r - s.r))),
+			static_cast<uint8_t>(s.g + (fraction * (f.g - s.g))),
+			static_cast<uint8_t>(s.b + (fraction * (f.b - s.b))),
+			static_cast<uint8_t>(s.a + (fraction * (f.a - s.a)))
+		};
+	}
+
 private:
 
 

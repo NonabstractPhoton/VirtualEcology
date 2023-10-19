@@ -4,16 +4,15 @@
 #include "ChaserAgent.cpp"
 #include "WanderingAgent.cpp"
 
-#define CHASER_STARTING_POP 5
-#define WANDERING_STARTING_POP 5
-#define FOOD_PER_ROUND 250
 
 
-const int evolutionScreenTime = 5, simRunTime = 5;
+
+const int evolutionScreenTime = 5, simRunTime = 20;
 auto simStartTime = high_resolution_clock::now();
 bool simulating = true;
 
 vector<Agent*> agents;
+Agent deleted;
 
 vector<Food> food;
 
@@ -32,13 +31,14 @@ int main(void)
 
 
 
-    agents.reserve(10);
+    agents.reserve(CHASER_STARTING_POP+WANDERING_STARTING_POP);
     for (int i = 0; i < CHASER_STARTING_POP; i++) {
         agents.push_back(new chaseI);
     }
     for (int i = 0; i < WANDERING_STARTING_POP; i++) {
         agents.push_back(new wanderI);
     }
+
 
 
 
@@ -111,7 +111,9 @@ void evolve() {
 
     sort(agents.begin(), agents.end(), comparePtrToNode);
     
-    agents.erase(agents.begin());   //removes the guy who eaten the least
+       //removes the guy who eaten the least
+
+
 }
 
 void drawAgents() {
@@ -127,6 +129,7 @@ void drawAgents() {
 
 void drawSplash() {
     //draw ranking, who died, who mutated etc.
+
 }
 
 void updateAllAgents() {

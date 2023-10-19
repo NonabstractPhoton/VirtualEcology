@@ -19,8 +19,12 @@ public:
 		//std::cout << maxSpeed << "ms\n";
 		//std::cout << maxForce << "mf\n";
 		DrawCircle(location.x, location.y, 5, BLUE);
-		DrawCircleGradient(location.x, location.y, detectRange, Color{ 255, 255, 255, 0 }, DETECT_COLOR);
-		DrawCircleGradient(location.x, location.y, foodRange, Color{ 255, 255, 255, 0 }, EAT_COLOR);
+
+
+		
+
+
+		DrawCircleGradient(location.x, location.y, detectRange, Color{ 255, 255, 255, 0 }, Agent::gradientCalculator(DETECT_COLOR_START, DETECT_COLOR_END, (WANDERING_STARTING_POP+CHASER_STARTING_POP)*foodEaten / (2*FOOD_PER_ROUND)));
 	}
 
     void update(std::vector<Food>* foods) override {
@@ -52,9 +56,6 @@ public:
 
 
 private:
-
-    const float SIZE = 1, MAX_SPEED = 3, MAX_FORCE = .1, FOOD_RANGE = 5, DETECT_RANGE = 100, RECHARGE_TIME = 0;
-
     void addForce(Vector2 f) {
         acceleration = f;
     }
