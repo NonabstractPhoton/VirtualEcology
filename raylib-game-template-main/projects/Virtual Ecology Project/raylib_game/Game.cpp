@@ -1,22 +1,26 @@
 #include "Header.h"
-#include "Agent.cpp"
-#include "Food.cpp"
 #include "ChaserAgent.cpp"
 #include "WanderingAgent.cpp"
+#include "MutantAgent.cpp"
 
 
 
 
-const int evolutionScreenTime = 5, simRunTime = 20;
+
+const int evolutionScreenTime = 5, simRunTime = 5;
 auto simStartTime = high_resolution_clock::now();
 bool simulating = true;
 
+vector<Vector2> circles;
+
 vector<Agent*> agents;
-Agent deleted;
+Agent deleted = { {0,0},0,0,0,0,0,0 };
 
 vector<Food> food;
 
-bool comparePtrToNode(Agent* a, Agent* b);
+bool comparePtrToNode(Agent* a, Agent* b);  //can't include in header cus redefinition error
+void drawCircles();
+
 
 
 
@@ -44,6 +48,7 @@ int main(void)
 
     while (!WindowShouldClose())
     {
+
         BeginDrawing();
         ClearBackground(WHITE);
 
@@ -58,8 +63,14 @@ int main(void)
             if (simulating) {
                 simulating = false;
                 evolve();
+
             }
-            drawSplash();
+            //for testing
+            drawAgents();
+            drawFood();
+            drawCircles();
+
+            //drawSplash();
         }
         else {      //simulating
             drawFood();
@@ -98,6 +109,7 @@ int main(void)
 }
 
 void generateFood() {
+    food.erase(food.begin(), food.end());
     for (int i = 0; i < FOOD_PER_ROUND; i++)
         food.push_back(Food{ Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)} });
 }
@@ -110,6 +122,12 @@ void drawFood() {
 void evolve() {
 
     sort(agents.begin(), agents.end(), comparePtrToNode);
+
+    for (Agent* a : agents) {
+        a->foodEaten = 0;
+    }
+
+    reproduce();
     
        //removes the guy who eaten the least
 
@@ -118,12 +136,12 @@ void evolve() {
 
 void drawAgents() {
     for (Agent* ptr : agents) {
-        if (ChaserAgent* j = dynamic_cast<ChaserAgent*>(ptr)) {
+        if (ChaserAgent* j = dynamic_cast<ChaserAgent*>(ptr)) 
             j->draw();
-        }
-        else if (WanderingAgent* k = dynamic_cast<WanderingAgent*>(ptr)) {
+        else if (WanderingAgent* k = dynamic_cast<WanderingAgent*>(ptr)) 
             k->draw();
-        }
+        else if (MutantAgent* i = dynamic_cast<MutantAgent*>(ptr))
+            i->draw();
     }
 }
 
@@ -138,10 +156,87 @@ void updateAllAgents() {
             j->update(&food);
         else if (WanderingAgent* k = dynamic_cast<WanderingAgent*>(ptr))
             k->update(&food);
+        else if (MutantAgent* i = dynamic_cast<MutantAgent*>(ptr))
+            i->update(&food);
     }
 
 }
 
 bool comparePtrToNode(Agent* a, Agent* b) {
     //cout << a->foodEaten << "\t" << b->foodEaten << "\n";
-    return (*a < *b); }
+    return (*a < *b); 
+}
+
+void printAgents() {
+    for (Agent* i : agents) {
+        i->printVals();
+        cout << "\n";
+    }
+}
+
+void reproduce() {  //to be implemented
+    vector<Agent*> newAgents;
+    vector<Agent*> agentsCopy(agents);
+    int qw = 0, wq = 0;
+
+    for (Agent* ptr : agents) {
+        int g = 0;
+        if (MutantAgent* i = dynamic_cast<MutantAgent*>(ptr)) continue;
+        /*if (ChaserAgent* c = dynamic_cast<ChaserAgent*>(ptr)) {
+            cout << "c\n";
+            for (Agent* ptr2 : agents) {
+                if (Vector2Distance(ptr2->location, c->location) > REPROCUTION_RANGE || rand() % 100 > (REPRODUCTION_CHANCE * 100)) continue;
+                if (WanderingAgent* w = dynamic_cast<WanderingAgent*>(ptr))
+                    newAgents.push_back(new MutantAgent{
+                            Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)},
+                            (w->size + c->size) / 2,            //not needed
+                            (w->maxSpeed + c->maxSpeed) / 2,
+                            (w->maxForce + c->maxForce) / 2,    //not needed
+                            (w->detectRange + c->detectRange) / 2,
+                            (w->foodRange + c->foodRange) / 2,
+                            (w->rechargeTime + c->rechargeTime) / 2
+                        });
+            }
+        }
+        else*/ if (WanderingAgent* w = dynamic_cast<WanderingAgent*>(ptr)) {
+            //cout << "w\n";
+            for (int i = 0; i < agentsCopy.size(); i++) {
+                g++;
+
+                Agent*ptr2 = agentsCopy[i];
+                if (Vector2Distance(ptr2->location, w->location) > REPROCUTION_RANGE || rand() % 100 >= (REPRODUCTION_CHANCE * 100)) {
+                    //cout << "notadded\n";
+                    continue;
+                }
+                else if (ChaserAgent* c = dynamic_cast<ChaserAgent*>(ptr2)) {
+                    cout << "m\n";
+                    newAgents.push_back(new MutantAgent{
+                            Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)},
+                            (w->size + c->size) / 2,            //not needed
+                            (w->maxSpeed + c->maxSpeed) / 2,
+                            (w->maxForce + c->maxForce) / 2,    //not needed
+                            (w->foodRange + c->foodRange) / 2,
+                            (w->detectRange + c->detectRange) / 2,
+                            (w->rechargeTime + c->rechargeTime) / 2
+                        });
+                    circles.push_back(Vector2{ (w->location.x + c->location.x) / 2, (w->location.y + c->location.y) / 2 });
+                    agentsCopy.erase(agentsCopy.begin()+i);
+                }
+            }
+            cout << g;
+        }
+    }
+    cout << "before l = " << agents.size() << "\n\n";
+    //printAgents();
+    agents.insert(agents.end(), newAgents.begin(), newAgents.end());
+    cout << "\n\nafter l = " << agents.size() << "\n\n";
+    //printAgents();
+
+
+}
+void drawCircles() {
+    for (Vector2 v : circles) {
+        DrawCircleGradient(v.x, v.y, REPROCUTION_RANGE, Color{ 255, 255, 255, 0 }, RED);
+    }
+}
+

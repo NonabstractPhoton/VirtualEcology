@@ -15,13 +15,20 @@ using namespace chrono;
 #define DETECT_COLOR_END Color{255, 0, 0, 255}
 #define EAT_COLOR_START Color{0, 255, 0, 255}
 #define EAT_COLOR_END Color{255, 0, 0, 255}
+
 #define XDIM 1600
 #define YDIM 900
+
 #define wanderI WanderingAgent(Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)}, 5, 2, .1, 50, 0, .5)
 #define chaseI ChaserAgent(Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)}, 5, 3, .1, 5, 100, 0)
-#define CHASER_STARTING_POP 5
-#define WANDERING_STARTING_POP 5
+
+#define CHASER_STARTING_POP 2
+#define WANDERING_STARTING_POP 2
 #define FOOD_PER_ROUND 200
+
+#define REPROCUTION_RANGE 500
+#define REPRODUCTION_CHANCE 1
+
 
 
 
@@ -31,3 +38,6 @@ void evolve();
 void drawAgents();
 void drawSplash();
 void updateAllAgents();
+void printAgents();
+void reproduce();
+

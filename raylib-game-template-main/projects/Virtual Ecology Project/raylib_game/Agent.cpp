@@ -35,10 +35,13 @@ public:
 
 	void seekTarget() { seek(); }
 
-	void toString() {
-		std::cout << foodRange << "\t";
-		std::cout << detectRange << "\n";
-		
+	void printVals() {
+		std::cout << "size " << size << "\n";
+		std::cout << "maxSpeed " << maxSpeed << "\n";
+		std::cout << "maxForce " << maxForce << "\n";
+		std::cout << "foodRange " << foodRange << "\n";
+		std::cout << "detectRange " << detectRange << "\n";
+		std::cout << "rechargeTime " << rechargeTime << "\n";
 	}
 
 	void consumeFoodInRange(std::vector<Food>* foods)
@@ -59,6 +62,7 @@ public:
 	}
 
 	Color gradientCalculator(Color s, Color f, float fraction) {
+		if (fraction >= 1) fraction = 1;
 		return Color{
 			static_cast<uint8_t>(s.r + (fraction * (f.r - s.r))),
 			static_cast<uint8_t>(s.g + (fraction * (f.g - s.g))),
