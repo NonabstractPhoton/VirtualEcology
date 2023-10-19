@@ -2,7 +2,6 @@
 #include "Header.h"
 #include "Food.cpp"
 
-
 class Agent {
 
 public:

@@ -7,7 +7,7 @@ class WanderingAgent : public Agent {
 
 private:
 
-	int rechargeTimer = 0;
+	steady_clock::time_point timeOfLastEat = high_resolution_clock::now();
 
 
 public:
@@ -36,11 +36,10 @@ public:
 		}
 
 		seekTarget();
-		rechargeTimer -= GetFrameTime();
 
-		if (rechargeTimer < .1)
+		if (rechargeTime < duration_cast<seconds>(high_resolution_clock::now() - timeOfLastEat).count())
 		{
-			rechargeTimer = rechargeTime;
+			timeOfLastEat = high_resolution_clock::now();
 			consumeFoodInRange(foods);
 		}
 		location = Vector2Add(location, velocity);

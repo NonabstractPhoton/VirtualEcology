@@ -4,16 +4,9 @@
 #include "ChaserAgent.cpp"
 #include "WanderingAgent.cpp"
 
-
-
-
-
-using namespace std;
-using namespace chrono;
-
-#define CHASER_STARTING_POP 10
-#define WANDERING_STARTING_POP 10
-#define FOOD_PER_ROUND 500
+#define CHASER_STARTING_POP 5
+#define WANDERING_STARTING_POP 5
+#define FOOD_PER_ROUND 250
 
 
 const int evolutionScreenTime = 5, simRunTime = 5;
