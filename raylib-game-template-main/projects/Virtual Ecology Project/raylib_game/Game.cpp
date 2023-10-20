@@ -11,7 +11,10 @@ const int evolutionScreenTime = 5, simRunTime = 5;
 auto simStartTime = high_resolution_clock::now();
 bool simulating = true;
 
-vector<Vector2> circles;
+vector<Vector2> circlePos;
+vector<float> circleRadii;
+
+vector<Vector2> startPos, endPos;
 
 vector<Agent*> agents;
 Agent deleted = { {0,0},0,0,0,0,0,0 };
@@ -58,6 +61,12 @@ int main(void)
             simStartTime = high_resolution_clock::now();
             generateFood();
             simulating = true;
+            circlePos.clear();
+            circleRadii.clear();
+            startPos.clear();
+            endPos.clear();
+
+
         }
         else if (currentRunTime > simRunTime) {    //draw spash screen showing the stat changes/killing/mutations
             if (simulating) {
@@ -127,6 +136,8 @@ void evolve() {
         a->foodEaten = 0;
     }
 
+    agents.erase(agents.begin());
+
     reproduce();
     
        //removes the guy who eaten the least
@@ -179,7 +190,8 @@ void reproduce() {  //to be implemented
     vector<Agent*> agentsCopy(agents);
     int qw = 0, wq = 0;
 
-    for (Agent* ptr : agents) {
+    for (int i = 0; i < agents.size(); i++) {
+        Agent*ptr = agents[i];
         int g = 0;
         if (MutantAgent* i = dynamic_cast<MutantAgent*>(ptr)) continue;
         /*if (ChaserAgent* c = dynamic_cast<ChaserAgent*>(ptr)) {
@@ -207,7 +219,7 @@ void reproduce() {  //to be implemented
                 if (Vector2Distance(ptr2->location, w->location) > REPROCUTION_RANGE || rand() % 100 >= (REPRODUCTION_CHANCE * 100)) {
                     //cout << "notadded\n";
                     continue;
-                }
+                }//added
                 else if (ChaserAgent* c = dynamic_cast<ChaserAgent*>(ptr2)) {
                     cout << "m\n";
                     newAgents.push_back(new MutantAgent{
@@ -219,7 +231,11 @@ void reproduce() {  //to be implemented
                             (w->detectRange + c->detectRange) / 2,
                             (w->rechargeTime + c->rechargeTime) / 2
                         });
-                    circles.push_back(Vector2{ (w->location.x + c->location.x) / 2, (w->location.y + c->location.y) / 2 });
+                    circleRadii.push_back(Vector2Distance(c->location, w->location));
+                    circlePos.push_back(Vector2{ (w->location.x + c->location.x) / 2, (w->location.y + c->location.y) / 2 });
+                    startPos.push_back(w->location);
+                    endPos.push_back(c->location);
+
                     agentsCopy.erase(agentsCopy.begin()+i);
                 }
             }
@@ -235,8 +251,8 @@ void reproduce() {  //to be implemented
 
 }
 void drawCircles() {
-    for (Vector2 v : circles) {
-        DrawCircleGradient(v.x, v.y, REPROCUTION_RANGE, Color{ 255, 255, 255, 0 }, RED);
+    for (int i = 0; i < circlePos.size(); i++) {
+        DrawRing(circlePos[i], circleRadii[i] + 20, circleRadii[i] + 25, 0, 360, 1, RED);
+        DrawLineEx(startPos[i], endPos[i], 5 ,RED);
     }
 }
-
