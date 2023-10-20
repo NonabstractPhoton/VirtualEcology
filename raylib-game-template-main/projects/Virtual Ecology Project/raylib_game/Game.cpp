@@ -174,78 +174,76 @@ void updateAllAgents() {
 }
 
 bool comparePtrToNode(Agent* a, Agent* b) {
-    //cout << a->foodEaten << "\t" << b->foodEaten << "\n";
+    //std::cout << a->foodEaten << "\t" << b->foodEaten << "\n";
     return (*a < *b); 
 }
 
 void printAgents() {
     for (Agent* i : agents) {
         i->printVals();
-        cout << "\n";
+        std::cout << "\n";
     }
 }
 
 void reproduce() {  //to be implemented
     vector<Agent*> newAgents;
-    vector<Agent*> agentsCopy(agents);
-    int qw = 0, wq = 0;
 
-    for (int i = 0; i < agents.size(); i++) {
-        Agent*ptr = agents[i];
+    for (int j = agents.size()-1; j >= 0; j--) {
+        Agent*ptr = agents[j];
         int g = 0;
-        if (MutantAgent* i = dynamic_cast<MutantAgent*>(ptr)) continue;
-        /*if (ChaserAgent* c = dynamic_cast<ChaserAgent*>(ptr)) {
-            cout << "c\n";
-            for (Agent* ptr2 : agents) {
-                if (Vector2Distance(ptr2->location, c->location) > REPROCUTION_RANGE || rand() % 100 > (REPRODUCTION_CHANCE * 100)) continue;
-                if (WanderingAgent* w = dynamic_cast<WanderingAgent*>(ptr))
-                    newAgents.push_back(new MutantAgent{
-                            Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)},
-                            (w->size + c->size) / 2,            //not needed
-                            (w->maxSpeed + c->maxSpeed) / 2,
-                            (w->maxForce + c->maxForce) / 2,    //not needed
-                            (w->detectRange + c->detectRange) / 2,
-                            (w->foodRange + c->foodRange) / 2,
-                            (w->rechargeTime + c->rechargeTime) / 2
-                        });
-            }
-        }
-        else*/ if (WanderingAgent* w = dynamic_cast<WanderingAgent*>(ptr)) {
-            //cout << "w\n";
-            for (int i = 0; i < agentsCopy.size(); i++) {
+        if (MutantAgent* t = dynamic_cast<MutantAgent*>(ptr)) continue;
+        if (WanderingAgent* w = dynamic_cast<WanderingAgent*>(ptr)) {
+            //std::cout << "w\n";
+            for (int i = agents.size()-1; i >= 0; i--) {
                 g++;
 
-                Agent*ptr2 = agentsCopy[i];
+                Agent*ptr2 = agents[i];
                 if (Vector2Distance(ptr2->location, w->location) > REPROCUTION_RANGE || rand() % 100 >= (REPRODUCTION_CHANCE * 100)) {
-                    //cout << "notadded\n";
+                    //std::cout << "notadded\n";
                     continue;
                 }//added
                 else if (ChaserAgent* c = dynamic_cast<ChaserAgent*>(ptr2)) {
-                    cout << "m\n";
+
+                    std::cout << "m\n";
+                    //replaces wanderer
                     newAgents.push_back(new MutantAgent{
-                            Vector2{(float)GetRandomValue(0, XDIM), (float)GetRandomValue(0, YDIM)},
-                            (w->size + c->size) / 2,            //not needed
-                            (w->maxSpeed + c->maxSpeed) / 2,
-                            (w->maxForce + c->maxForce) / 2,    //not needed
-                            (w->foodRange + c->foodRange) / 2,
-                            (w->detectRange + c->detectRange) / 2,
-                            (w->rechargeTime + c->rechargeTime) / 2
+                            w->location,
+                            (2*w->size + c->size) / 3,            //not needed
+                            (2*w->maxSpeed + c->maxSpeed) / 3,
+                            (2*w->maxForce + c->maxForce) / 3,    //not needed
+                            (2*w->foodRange + c->foodRange) / 3,
+                            (2*w->detectRange + c->detectRange) / 3,
+                            (2*w->rechargeTime + c->rechargeTime) / 3
                         });
+                    //replaces chaser
+                    newAgents.push_back(new MutantAgent{
+                            c->location,
+                            (w->size + 2*c->size) / 3,            //not needed
+                            (w->maxSpeed +2*c->maxSpeed) / 3,
+                            (w->maxForce + 2*c->maxForce) / 3,    //not needed
+                            (w->foodRange + 2*c->foodRange) / 3,
+                            (w->detectRange + 2*c->detectRange) / 3,
+                            (w->rechargeTime + 2*c->rechargeTime) / 3
+                        });
+
                     circleRadii.push_back(Vector2Distance(c->location, w->location));
                     circlePos.push_back(Vector2{ (w->location.x + c->location.x) / 2, (w->location.y + c->location.y) / 2 });
                     startPos.push_back(w->location);
                     endPos.push_back(c->location);
 
-                    agentsCopy.erase(agentsCopy.begin()+i);
+                    //removes existing guys that were mutated
+
+                    agents.erase(agents.begin() + j);
+                    agents.erase(agents.begin() + (j > i ? i : i - 1));
                 }
             }
-            cout << g;
+            std::cout << g;
         }
     }
-    cout << "before l = " << agents.size() << "\n\n";
+    std::cout << "before l = " << agents.size() << "\n\n";
     //printAgents();
     agents.insert(agents.end(), newAgents.begin(), newAgents.end());
-    cout << "\n\nafter l = " << agents.size() << "\n\n";
+    std::cout << "\n\nafter l = " << agents.size() << "\n\n";
     //printAgents();
 
 

@@ -26,7 +26,7 @@ public:
 	}
 
 	void update(std::vector<Food>* foods) override {
-		//std::cout << "C:" << location.x << "\t" << location.y << "\n";
+		//std::cout<< "C:" << location.x << "\t" << location.y << "\n";
 
 
 		bool foodInDetectionRange = false;
