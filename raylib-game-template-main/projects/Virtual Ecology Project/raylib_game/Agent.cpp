@@ -71,7 +71,12 @@ public:
 		};
 	}
 
+	bool mutated = false;
+	
+	void mutate() { mutated = true; }
+
 private:
+
 
 
 	const float mass =  1,

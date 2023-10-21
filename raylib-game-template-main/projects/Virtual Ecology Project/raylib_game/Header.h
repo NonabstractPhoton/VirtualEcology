@@ -26,6 +26,8 @@ using namespace chrono;
 #define WANDERING_STARTING_POP 5
 #define FOOD_PER_ROUND 10
 
+#define MUTATION_FACTOR 3
+
 #define REPROCUTION_RANGE 200
 #define REPRODUCTION_CHANCE 1
 

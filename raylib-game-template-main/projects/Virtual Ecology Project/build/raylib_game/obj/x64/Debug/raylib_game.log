@@ -13,15 +13,20 @@ C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-mai
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\MutantAgent.cpp(18,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\MutantAgent.cpp(23,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\MutantAgent.cpp(23,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(43,36): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(46,37): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(58,28): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(46,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(49,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(61,28): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(128,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(128,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(191,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(197,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(135,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(135,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(143,38): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(163,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\raylib_game\game.cpp(264,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   raylib_game.vcxproj -> C:\Users\bhole\OneDrive\Documents\GitHub\VirtualEcology\raylib-game-template-main\projects\Virtual Ecology Project\build\raylib_game\bin\x64\Debug\raylib_game.exe
