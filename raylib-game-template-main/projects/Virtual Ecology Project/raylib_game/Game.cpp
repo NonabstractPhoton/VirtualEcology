@@ -60,6 +60,7 @@ int main(void)
         if (currentRunTime > SIM_RUN_TIME + MUTATION_SCREEN_TIME + SPLASH_SCREEN_TIME) //start new sim
         {
             simStartTime = high_resolution_clock::now();
+            delete agents[0];
             agents.erase(agents.begin());
             generateFood();
             simulating = true;
@@ -68,6 +69,11 @@ int main(void)
             circleRadii.clear();
             startPos.clear();
             endPos.clear();
+            if ((int)agents.size() == 1)
+            {
+                CloseWindow();
+                break;
+            }
         }
         else if (currentRunTime > SIM_RUN_TIME + MUTATION_SCREEN_TIME) // show splash screen
         {
@@ -334,7 +340,7 @@ void reproduce() {
     for (int i = agents.size()-1; i >= 0; i--)
         if (agents[i]->mutated)
         {
-            delete agents[i]; // created by new, must be deleted by delete
+            delete agents[i];
             agents.erase(agents.begin() + i);
         }
 
